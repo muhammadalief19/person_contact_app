@@ -13,11 +13,13 @@ class ContactDetailPage extends StatefulWidget {
 }
 
 class _ContactDetailPageState extends State<ContactDetailPage> {
-  late Contact contact;
+  late Contact contact =
+      Contact(name: '', phoneNumber: '', createdTime: DateTime.now());
 
   Future<void> getContactById() async {
+    Contact cont = await ContactDatabase.instance.getNoteById(widget.id);
     setState(() {
-      contact = widget.contact;
+      contact = cont;
     });
   }
 
